@@ -18,8 +18,8 @@ body{margin:0;background:radial-gradient(1200px 600px at 50% -200px,#3a2a16 0,tr
   font:16px/1.75 "Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--link)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-.lang{position:absolute;top:14px;right:16px;display:flex;gap:0;border:2px solid var(--line);border-radius:6px;overflow:hidden}
-.lang button{all:unset;cursor:pointer;padding:6px 14px;font-size:13px;font-weight:700;color:var(--muted);background:var(--bg2)}
+.lang{position:fixed;top:14px;right:16px;z-index:99999;display:flex;gap:0;border:2px solid var(--line);border-radius:6px;overflow:hidden;pointer-events:auto}
+.lang button{all:unset;display:block;position:relative;z-index:1;cursor:pointer;pointer-events:auto;touch-action:manipulation;padding:6px 14px;font-size:13px;font-weight:700;color:var(--muted);background:var(--bg2)}
 .lang button[aria-pressed=true]{color:#2a1b05;background:linear-gradient(180deg,var(--gold-hi),var(--gold))}
 .lang button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:-2px}
 header.hero{padding:72px 0 40px;text-align:center;position:relative}
@@ -39,7 +39,9 @@ section{padding:36px 0}
 h2{margin:0 0 6px;font-size:28px;color:var(--gold-hi);letter-spacing:.02em}
 .lead{color:var(--muted);margin:0 0 22px}
 .grid{display:grid;gap:16px}
-.dl{grid-template-columns:repeat(2,minmax(0,1fr))}\n.download-tier{grid-column:1/-1;margin:12px 0 -4px;font-size:21px;color:var(--gold-hi);border-bottom:1px solid var(--line);padding:0 0 7px}\n@media(max-width:640px){.dl{grid-template-columns:1fr}.shots{grid-template-columns:1fr}.wrap{padding:0 14px}.card{padding:17px}}
+.dl{grid-template-columns:repeat(2,minmax(0,1fr))}
+.download-tier{grid-column:1/-1;margin:12px 0 -4px;font-size:21px;color:var(--gold-hi);border-bottom:1px solid var(--line);padding:0 0 7px}
+@media(max-width:640px){.dl{grid-template-columns:1fr}.shots{grid-template-columns:1fr}.wrap{padding:0 14px}.card{padding:17px}}
 .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:2px solid var(--line);border-radius:8px;padding:20px;
   box-shadow:inset 0 1px 0 rgba(255,233,163,.18),0 8px 20px rgba(0,0,0,.35);display:flex;flex-direction:column}
 .card h3{margin:0 0 4px;font-size:19px;color:var(--gold-hi)}
@@ -73,8 +75,8 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
 <body>
 
 <div class="lang" role="group" aria-label="Language / 言語">
-  <button type="button" data-set="ja" aria-pressed="true" onclick="window.GHSetLang('ja')">日本語</button>
-  <button type="button" data-set="en" aria-pressed="false" onclick="window.GHSetLang('en')">English</button>
+  <button type="button" data-set="ja" aria-pressed="true" >日本語</button>
+  <button type="button" data-set="en" aria-pressed="false" >English</button>
 </div>
 
 <header class="hero">
@@ -90,9 +92,6 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
       <li><span class="ja">軽量版あり</span><span class="en">Lite versions</span></li>
       <li><span class="ja">非公式・ファンメイド</span><span class="en">Unofficial fan-made</span></li>
     </ul>
-    <p class="total" id="total" hidden>
-      <span class="ja">累計ダウンロード数</span><span class="en">Total downloads</span><b id="totalNum">0</b>
-    </p>
     <a class="cta" href="#download"><span class="ja">ダウンロード</span><span class="en">Download</span></a>
   </div>
 </header>
@@ -108,36 +107,36 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
   <div class="grid dl">
     <h3 class="download-tier"><span class="ja">通常版</span><span class="en">Full Version</span></h3>
     <div class="card">
-      <span class="tag"><span class="ja">シェーダー</span><span class="en">Shader</span></span>
-      <h3>Golden Hour Shader</h3>
-      <p><span class="ja">本編。凹凸・影・光の色・水・落ち葉・雪・水の波紋・金属の質感など、全部入り。</span><span class="en">The full version: relief, shadows, coloured light, water, falling leaves, snow, water ripples, metal sheen — everything.</span></p>
-      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Shader.zip">GoldenHour-Shader.zip</a>
-      <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span> · <span class="cnt" data-asset="GoldenHour-Shader.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
-    </div>
-    <div class="card">
       <span class="tag"><span class="ja">テクスチャ</span><span class="en">Textures</span></span>
       <h3>Golden Hour Textures</h3>
       <p><span class="ja">ブロック・アイテム・防具・mob・ドア・空・UI まで、全部入り。ブロックは 64×64。</span><span class="en">Blocks, items, armour, mobs, doors, sky and UI — all in one. Blocks are 64×64.</span></p>
-      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Textures-64-All.zip">GoldenHour-Textures-64-All.zip</a>
-      <span class="size"><span class="ja">約 41 MB</span><span class="en">~41 MB</span> · <span class="cnt" data-asset="GoldenHour-Textures-64-All.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
+      <a class="btn" href="https://github.com/bloxdzayubro-crypto/goldenhour/raw/refs/heads/main/GoldenHour-Textures-64-All.zip">GoldenHour-Textures-64-All.zip</a>
+      <span class="size"><span class="ja">約 41 MB</span><span class="en">~41 MB</span></span>
+    </div>
+    <div class="card">
+      <span class="tag"><span class="ja">シェーダー</span><span class="en">Shader</span></span>
+      <h3>Golden Hour Shader</h3>
+      <p><span class="ja">本編。凹凸・影・光の色・水・落ち葉・雪・水の波紋・金属の質感など、全部入り。</span><span class="en">The full version: relief, shadows, coloured light, water, falling leaves, snow, water ripples, metal sheen — everything.</span></p>
+      <a class="btn" href="https://bloxd.io/shader-packs/km1Q641kLWxT">GoldenHour-Shader.zip</a>
+      <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span></span>
     </div>
     <h3 class="download-tier"><span class="ja">軽量版</span><span class="en">Lite Version</span></h3>
-    <div class="card">
-      <span class="tag"><span class="ja">シェーダー・軽量版</span><span class="en">Shader · Lite</span></span>
-      <h3>Golden Hour Shader Lite</h3>
-      <p><span class="ja">落ち葉・雪・波紋・凹凸・光の筋・雲の影などを切って、負荷を下げた版。色・光・影・水の見た目は残っています。</span><span class="en">Lighter on the GPU: falling leaves, snow, ripples, relief, light shafts and cloud shadows are switched off. Colours, light, shadows and water stay.</span></p>
-      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Shader-Lite.zip">GoldenHour-Shader-Lite.zip</a>
-      <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span> · <span class="cnt" data-asset="GoldenHour-Shader-Lite.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
-    </div>
     <div class="card">
       <span class="tag"><span class="ja">テクスチャ・軽量版</span><span class="en">Textures · Lite</span></span>
       <h3>Golden Hour Textures Lite</h3>
       <p><span class="ja">ブロック 32×32・アイコン 40×40・皮 128 の軽い版。ファイルは約半分、ブロックのメモリ使用は 1/4。</span><span class="en">Blocks 32×32, icons 40×40, skins 128. About half the file size and a quarter of the block memory.</span></p>
-      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Textures-Lite.zip">GoldenHour-Textures-Lite.zip</a>
-      <span class="size"><span class="ja">約 18 MB</span><span class="en">~18 MB</span> · <span class="cnt" data-asset="GoldenHour-Textures-Lite.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
+      <a class="btn" href="https://github.com/bloxdzayubro-crypto/goldenhour/raw/refs/heads/main/GoldenHour-Textures-Lite.zip">GoldenHour-Textures-Lite.zip</a>
+      <span class="size"><span class="ja">約 18 MB</span><span class="en">~18 MB</span></span>
+    </div>
+    <div class="card">
+      <span class="tag"><span class="ja">シェーダー・軽量版</span><span class="en">Shader · Lite</span></span>
+      <h3>Golden Hour Shader Lite</h3>
+      <p><span class="ja">落ち葉・雪・波紋・凹凸・光の筋・雲の影などを切って、負荷を下げた版。色・光・影・水の見た目は残っています。</span><span class="en">Lighter on the GPU: falling leaves, snow, ripples, relief, light shafts and cloud shadows are switched off. Colours, light, shadows and water stay.</span></p>
+      <a class="btn" href="https://bloxd.io/shader-packs/M4EdLwbvw-fe">GoldenHour-Shader-Lite.zip</a>
+      <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span></span>
     </div>
   </div>
-  <p class="lead" style="margin-top:14px"><span class="ja">すべてのファイル:</span><span class="en">All files:</span> <a href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest">Releases</a></p>
+  <p class="lead" style="margin-top:14px"><span class="ja">すべてのファイル・更新履歴:</span><span class="en">All files &amp; history:</span> <a href="https://github.com/bloxdzayubro-crypto/goldenhour">GitHub Repository</a></p>
 </section>
 
 <section>
@@ -236,7 +235,7 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
   <div class="wrap">
     <p class="ja"><b>注意:</b> Golden Hour は、Bloxd.io の非公式のファンメイドで、Bloxd.io の運営とは関係ありません。テクスチャ・モデルは、Bloxd.io の標準のテクスチャ・モデルを元に、加工したものです。権利は、それぞれの権利者に帰属します。権利者からの要請があれば、速やかに、取り下げます。使用は、自己責任でお願いします。</p>
     <p class="en"><b>Notice:</b> Golden Hour is an unofficial fan-made project and is not affiliated with Bloxd.io. The textures and models are derived from the standard Bloxd.io textures and models; all rights remain with their respective owners. If a rights holder asks, it will be taken down promptly. Use at your own risk.</p>
-    <p><span class="ja">ソース・更新履歴:</span><span class="en">Source &amp; changelog:</span> <a href="https://github.com/Venus-builder/bloxd-golden-hour">github.com/Venus-builder/bloxd-golden-hour</a></p>
+    <p><span class="ja">ソース・更新履歴:</span><span class="en">Source &amp; changelog:</span> <a href="https://github.com/bloxdzayubro-crypto/goldenhour">github.com/bloxdzayubro-crypto/goldenhour</a></p>
   </div>
 </footer>
 
@@ -244,88 +243,33 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
 (function () {
   "use strict";
   var root = document.documentElement;
+  var buttons = document.querySelectorAll(".lang button[data-set]");
 
   function setLang(language) {
     var lang = language === "en" ? "en" : "ja";
     root.setAttribute("data-lang", lang);
     root.setAttribute("lang", lang);
-
-    // Explicitly toggle each language span instead of relying only on CSS selectors.
-    document.querySelectorAll(".ja, .en").forEach(function (node) {
-      var shouldHide = !node.classList.contains(lang);
-      node.hidden = shouldHide;
-      if (shouldHide) {
-        node.style.setProperty("display", "none", "important");
-      } else {
-        node.style.removeProperty("display");
-      }
-    });
-
-    document.querySelectorAll(".lang button[data-set]").forEach(function (button) {
+    buttons.forEach(function (button) {
       button.setAttribute("aria-pressed", String(button.getAttribute("data-set") === lang));
     });
-
-    try {
-      localStorage.setItem("gh-lang", lang);
-    } catch (error) {
-      // Storage may be disabled; language switching still works for this page view.
-    }
-    return false;
+    try { localStorage.setItem("gh-lang", lang); } catch (error) {}
   }
 
-  window.GHSetLang = setLang;
-
-  // Delegated listener also supports buttons if the header is re-rendered later.
-  document.addEventListener("click", function (event) {
-    var button = event.target.closest(".lang button[data-set]");
-    if (button) {
+  // Attach directly to each language button so clicks do not depend on bubbling.
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
       event.preventDefault();
+      event.stopPropagation();
       setLang(button.getAttribute("data-set"));
-    }
+    });
   });
 
   var saved = null;
-  try {
-    saved = localStorage.getItem("gh-lang");
-  } catch (error) {}
+  try { saved = localStorage.getItem("gh-lang"); } catch (error) {}
   var initial = saved === "ja" || saved === "en"
     ? saved
     : ((navigator.language || "ja").toLowerCase().indexOf("ja") === 0 ? "ja" : "en");
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { setLang(initial); }, { once: true });
-  } else {
-    setLang(initial);
-  }
-
-  // Download counts from GitHub Releases API. Hide the count area if unavailable.
-  var numberFormat = new Intl.NumberFormat();
-  fetch("https://api.github.com/repos/Venus-builder/bloxd-golden-hour/releases?per_page=100", {
-    headers: { Accept: "application/vnd.github+json" }
-  })
-    .then(function (response) {
-      if (!response.ok) throw new Error("GitHub API: " + response.status);
-      return response.json();
-    })
-    .then(function (releases) {
-      var total = 0;
-      var perAsset = {};
-      releases.forEach(function (release) {
-        (release.assets || []).forEach(function (asset) {
-          total += asset.download_count;
-          perAsset[asset.name] = (perAsset[asset.name] || 0) + asset.download_count;
-        });
-      });
-      document.getElementById("totalNum").textContent = numberFormat.format(total);
-      document.getElementById("total").hidden = false;
-      document.querySelectorAll(".cnt[data-asset]").forEach(function (element) {
-        var count = perAsset[element.getAttribute("data-asset")];
-        element.textContent = count == null ? "–" : numberFormat.format(count);
-      });
-    })
-    .catch(function () {
-      // Keep download statistics hidden when the API cannot be reached.
-    });
+  setLang(initial);
 })();
 </script>
 </body>
