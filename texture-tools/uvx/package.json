@@ -1,0 +1,1 @@
+{"name":"bloxd-uvx","private":true,"type":"module","version":"1.0.0","description":"アイテムのモデル(GLB)の UV を広げる道具(gltf-transform + draco3dgltf)","dependencies":{"@gltf-transform/core":"^4.5.1","@gltf-transform/extensions":"^4.5.1","@gltf-transform/functions":"^4.5.1","draco3dgltf":"^1.5.9"}}

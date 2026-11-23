@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Hour — Bloxd.io Shader &amp; Texture Pack</title>
+<meta name="description" content="Realistic, 3D-looking shader pack and texture pack for Bloxd.io, with lite versions. Gold-trim UI, falling leaves, snow, water ripples. Unofficial fan-made. / Bloxd.io 用のリアルで立体的なシェーダーとテクスチャパック(軽量版つき)。">
+<style>
+:root{
+  --bg:#1c150e; --bg2:#261c12; --panel:#2f2316; --line:#6f4c10; --gold:#f0c453; --gold-hi:#fff1b8; --gold-lo:#b8861f;
+  --text:#f6ecd8; --muted:#c9b88f; --link:#ffd978;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html[data-lang=ja] .en{display:none !important}
+html[data-lang=en] .ja{display:none !important}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -200px,#3a2a16 0,transparent 70%),var(--bg);color:var(--text);
+  font:16px/1.75 "Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--link)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.lang{position:absolute;top:14px;right:16px;display:flex;gap:0;border:2px solid var(--line);border-radius:6px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;padding:6px 14px;font-size:13px;font-weight:700;color:var(--muted);background:var(--bg2)}
+.lang button[aria-pressed=true]{color:#2a1b05;background:linear-gradient(180deg,var(--gold-hi),var(--gold))}
+.lang button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:-2px}
+header.hero{padding:72px 0 40px;text-align:center;position:relative}
+.hero h1{margin:0;font-size:clamp(40px,8vw,76px);letter-spacing:.04em;line-height:1.1;
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 45%,var(--gold-lo));-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+.hero p.sub{margin:14px auto 0;max-width:640px;color:var(--muted);font-size:18px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 0;padding:0;list-style:none}
+.badges li{border:1px solid var(--line);background:rgba(47,35,22,.7);padding:4px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
+.total{margin:18px 0 0;font-size:15px;color:var(--muted)}
+.total b{font-size:26px;color:var(--gold-hi);font-variant-numeric:tabular-nums;margin:0 4px}
+.cta{display:inline-block;margin-top:22px;padding:14px 30px;font-weight:800;font-size:17px;color:#2a1b05;text-decoration:none;
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));border:2px solid #7a5410;border-radius:6px;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 6px 16px rgba(0,0,0,.45)}
+.cta:hover{filter:brightness(1.06)}
+section{padding:36px 0}
+h2{margin:0 0 6px;font-size:28px;color:var(--gold-hi);letter-spacing:.02em}
+.lead{color:var(--muted);margin:0 0 22px}
+.grid{display:grid;gap:16px}
+.dl{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:2px solid var(--line);border-radius:8px;padding:20px;
+  box-shadow:inset 0 1px 0 rgba(255,233,163,.18),0 8px 20px rgba(0,0,0,.35);display:flex;flex-direction:column}
+.card h3{margin:0 0 4px;font-size:19px;color:var(--gold-hi)}
+.card .tag{align-self:flex-start;font-size:12px;padding:1px 9px;border-radius:999px;border:1px solid var(--gold-lo);color:var(--gold);margin-bottom:10px}
+.card p{margin:0 0 14px;color:var(--muted);font-size:14.5px;flex:1}
+.btn{display:block;text-align:center;padding:10px 14px;border-radius:6px;font-weight:800;color:#2a1b05;text-decoration:none;
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));border:2px solid #7a5410;word-break:break-all}
+.btn:hover{filter:brightness(1.07)}
+.size{display:block;margin-top:6px;text-align:center;font-size:12.5px;color:var(--muted)}
+.size .cnt{font-variant-numeric:tabular-nums}
+.shots{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start}
+.shots figure.tall img{max-height:520px;object-fit:contain;background:var(--bg2)}
+figure{margin:0;background:var(--bg2);border:2px solid var(--line);border-radius:8px;overflow:hidden}
+figure img{display:block;width:100%;height:auto}
+figcaption{padding:10px 14px;font-size:14px;color:var(--muted)}
+figcaption b{color:var(--gold-hi)}
+ol.steps{padding-left:1.3em;margin:0}
+ol.steps li{margin:6px 0}
+.two{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.note{border-left:4px solid var(--gold-lo);background:rgba(47,35,22,.6);padding:12px 16px;border-radius:0 6px 6px 0;color:var(--muted);font-size:14.5px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel);color:var(--gold-hi)}
+details{border:1px solid var(--line);border-radius:6px;background:var(--bg2);margin:8px 0;padding:2px 14px}
+summary{cursor:pointer;padding:10px 0;font-weight:700;color:var(--gold-hi)}
+details p{color:var(--muted);margin:0 0 12px;font-size:14.5px}
+footer{padding:36px 0 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);margin-top:30px}
+code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4px;font-size:.92em}
+</style>
+</head>
+<body>
+
+<div class="lang" role="group" aria-label="Language / 言語">
+  <button type="button" data-set="ja" aria-pressed="true">日本語</button>
+  <button type="button" data-set="en" aria-pressed="false">English</button>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Golden Hour</h1>
+    <p class="sub">
+      <span class="ja">Bloxd.io を、リアルで立体的に。<br>シェーダー × テクスチャ × 金の縁の UI。軽量版つき。</span>
+      <span class="en">Make Bloxd.io look real and three-dimensional.<br>Shader × textures × a gold-trim UI. Lite versions included.</span>
+    </p>
+    <ul class="badges">
+      <li><span class="ja">シェーダー(WebGPU / apiVersion 5)</span><span class="en">Shader (WebGPU / apiVersion 5)</span></li>
+      <li><span class="ja">テクスチャ 64×64</span><span class="en">64×64 textures</span></li>
+      <li><span class="ja">軽量版あり</span><span class="en">Lite versions</span></li>
+      <li><span class="ja">非公式・ファンメイド</span><span class="en">Unofficial fan-made</span></li>
+    </ul>
+    <p class="total" id="total" hidden>
+      <span class="ja">累計ダウンロード数</span><span class="en">Total downloads</span><b id="totalNum">0</b>
+    </p>
+    <a class="cta" href="#download"><span class="ja">ダウンロード</span><span class="en">Download</span></a>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="download">
+  <h2><span class="ja">ダウンロード</span><span class="en">Download</span></h2>
+  <p class="lead">
+    <span class="ja">シェーダーとテクスチャは、別々です。重いと感じたら、軽量版を使ってください。</span>
+    <span class="en">The shader and the textures are separate. If it feels heavy, use the Lite versions.</span>
+  </p>
+  <div class="grid dl">
+    <div class="card">
+      <span class="tag"><span class="ja">シェーダー</span><span class="en">Shader</span></span>
+      <h3>Golden Hour Shader</h3>
+      <p><span class="ja">本編。凹凸・影・光の色・水・落ち葉・雪・水の波紋・金属の質感など、全部入り。</span><span class="en">The full version: relief, shadows, coloured light, water, falling leaves, snow, water ripples, metal sheen — everything.</span></p>
+      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Shader.zip">GoldenHour-Shader.zip</a>
+      <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span> · <span class="cnt" data-asset="GoldenHour-Shader.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
+    </div>
+    <div class="card">
+      <span class="tag"><span class="ja">シェーダー・軽量版</span><span class="en">Shader · Lite</span></span>
+      <h3>Golden Hour Shader Lite</h3>
+      <p><span class="ja">落ち葉・雪・波紋・凹凸・光の筋・雲の影などを切って、負荷を下げた版。色・光・影・水の見た目は残っています。</span><span class="en">Lighter on the GPU: falling leaves, snow, ripples, relief, light shafts and cloud shadows are switched off. Colours, light, shadows and water stay.</span></p>
+      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Shader-Lite.zip">GoldenHour-Shader-Lite.zip</a>
+      <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span> · <span class="cnt" data-asset="GoldenHour-Shader-Lite.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
+    </div>
+    <div class="card">
+      <span class="tag"><span class="ja">テクスチャ</span><span class="en">Textures</span></span>
+      <h3>Golden Hour Textures 64</h3>
+      <p><span class="ja">ブロック・アイテム・防具・mob・ドア・空・UI まで、全部入り。ブロックは 64×64。</span><span class="en">Blocks, items, armour, mobs, doors, sky and UI — all in one. Blocks are 64×64.</span></p>
+      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Textures-64-All.zip">GoldenHour-Textures-64-All.zip</a>
+      <span class="size"><span class="ja">約 41 MB</span><span class="en">~41 MB</span> · <span class="cnt" data-asset="GoldenHour-Textures-64-All.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
+    </div>
+    <div class="card">
+      <span class="tag"><span class="ja">テクスチャ・軽量版</span><span class="en">Textures · Lite</span></span>
+      <h3>Golden Hour Textures Lite</h3>
+      <p><span class="ja">ブロック 32×32・アイコン 40×40・皮 128 の軽い版。ファイルは約半分、ブロックのメモリ使用は 1/4。</span><span class="en">Blocks 32×32, icons 40×40, skins 128. About half the file size and a quarter of the block memory.</span></p>
+      <a class="btn" href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest/download/GoldenHour-Textures-Lite.zip">GoldenHour-Textures-Lite.zip</a>
+      <span class="size"><span class="ja">約 18 MB</span><span class="en">~18 MB</span> · <span class="cnt" data-asset="GoldenHour-Textures-Lite.zip">–</span> <span class="ja">回</span><span class="en">downloads</span></span>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:14px"><span class="ja">すべてのファイル:</span><span class="en">All files:</span> <a href="https://github.com/Venus-builder/bloxd-golden-hour/releases/latest">Releases</a></p>
+</section>
+
+<section>
+  <h2><span class="ja">見た目</span><span class="en">Preview</span></h2>
+  <p class="lead"><span class="ja">左 / 上 = 元の Bloxd、右 / 下 = Golden Hour。</span><span class="en">Left / top = original Bloxd, right / bottom = Golden Hour.</span></p>
+  <div class="grid shots">
+    <figure class="tall"><img src="assets/preview_blocks_before_after.png" alt="Blocks: before and after" loading="lazy"><figcaption><span class="ja"><b>ブロック</b> — 粒・ひび割れ・木目・織り目、面取りの陰影を、画像に焼き込み。</span><span class="en"><b>Blocks</b> — grain, cracks, wood grain and weave, with bevel shading baked into the images.</span></figcaption></figure>
+    <figure><img src="assets/icons.png" alt="Item icons: before and after" loading="lazy"><figcaption><span class="ja"><b>アイテムのアイコン</b> — 元(上)と Golden Hour(下)。形はそのままに、立体感と素材の質感を足しました。</span><span class="en"><b>Item icons</b> — original (top) and Golden Hour (bottom). Same shapes, with depth and material feel added.</span></figcaption></figure>
+    <figure><img src="assets/doors.png" alt="Doors: before and after" loading="lazy"><figcaption><span class="ja"><b>ドア・トラップドア</b> — 木目・板の継ぎ目・節・釘・くぼみの影。</span><span class="en"><b>Doors &amp; trapdoors</b> — wood grain, plank seams, knots, nails and recessed shadows.</span></figcaption></figure>
+    <figure><img src="assets/ui.png" alt="UI" loading="lazy"><figcaption><span class="ja"><b>UI</b> — 金の縁、明るい革色のスロット(黒縁のアイテムが見やすい)、光沢のある HP バー。</span><span class="en"><b>UI</b> — gold trim, light leather-coloured slots (black-outlined items stand out), glossy health bar.</span></figcaption></figure>
+    <figure><img src="assets/preview_sky.png" alt="Sky" loading="lazy"><figcaption><span class="ja"><b>空</b> — 昼・夕方・朝・夜・曇りの空(下の注意を参照)。</span><span class="en"><b>Sky</b> — day, sunset, dawn, night and overcast skies (see the notes below).</span></figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2><span class="ja">入れ方</span><span class="en">Install</span></h2>
+  <div class="grid two">
+    <div class="card">
+      <h3><span class="ja">シェーダー</span><span class="en">Shader</span></h3>
+      <ol class="steps ja">
+        <li>WebGPU が使える Chrome 系ブラウザで、bloxd.io を開く。</li>
+        <li>設定 → <b>Shader Pack</b> を開く。</li>
+        <li>ダウンロードした zip を、そのまま、ドロップする(解凍しない)。</li>
+        <li>案内に従って、ページを再読み込みする。</li>
+      </ol>
+      <ol class="steps en">
+        <li>Open bloxd.io in a Chromium-based browser with WebGPU.</li>
+        <li>Open Settings → <b>Shader Pack</b>.</li>
+        <li>Drop the downloaded zip as it is (do not unzip it).</li>
+        <li>Follow the prompt and reload the page.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3><span class="ja">テクスチャ</span><span class="en">Textures</span></h3>
+      <ol class="steps ja">
+        <li>zip を解凍する(<code>GoldenHour-Textures-64-All</code> のようなフォルダができる)。</li>
+        <li>bloxd.io の設定 → <b>テクスチャパック</b> を開く。</li>
+        <li><b>フォルダごと</b>(中の <code>textures</code> ではなく、その 1 つ上のフォルダ)を、ドロップする。</li>
+        <li>再読み込みする。元に戻すときは、設定で、標準(Default 2)を選ぶ。</li>
+      </ol>
+      <ol class="steps en">
+        <li>Unzip the file (you get a folder like <code>GoldenHour-Textures-64-All</code>).</li>
+        <li>Open bloxd.io Settings → <b>Texture Pack</b>.</li>
+        <li>Drop the <b>whole folder</b> (not the <code>textures</code> folder inside it, but the folder one level above).</li>
+        <li>Reload. To go back, choose the default pack (Default 2) in the settings.</li>
+      </ol>
+    </div>
+  </div>
+  <p class="note" style="margin-top:16px"><span class="ja">本編と軽量版は、<b>どちらか 1 つ</b>だけ入れてください(シェーダーも、テクスチャも)。</span><span class="en">Use <b>only one</b> of the full and Lite versions (for both the shader and the textures).</span></p>
+</section>
+
+<section>
+  <h2><span class="ja">できること・できないこと</span><span class="en">Notes &amp; limits</span></h2>
+  <table class="ja">
+    <tr><th style="width:26%">項目</th><th>内容</th></tr>
+    <tr><td>シェーダーが効くゲーム</td><td>シェーダーパックを許可しているゲームだけ。許可していないゲーム(多くの標準ゲーム)では、凹凸・影・光の色・水・落ち葉・雪は効きますが、<b>葉と草の「ゆれ」と、葉の黒い部分の透明化は効きません</b>(ゲーム側の制限)。</td></tr>
+    <tr><td>空</td><td>ゲームが標準の「画像の空」を使うときだけ。昼夜サイクルのあるゲームなど、プログラムで描く空を使うゲームでは、ゲーム自身の空のままです。</td></tr>
+    <tr><td>UI(金の縁など)</td><td>ゲームがテクスチャパックの CSS を取り込む仕組みの中で作っています。ゲームの更新で名前が変わると、効かなくなる部分が出ます。ボタンにマウスを乗せたときの色など、変えられない青が少し残ります。</td></tr>
+    <tr><td>顔の画像</td><td>ワールド参加時のロード画面の顔(円形に切り抜き)と、ロゴの顔を差し替えています。他のプレイヤーのアバターは、変えていません。</td></tr>
+    <tr><td>軽量版</td><td>見た目は少し簡素になります。速さの差は、環境によります。</td></tr>
+    <tr><td>手に持つアイテム</td><td>アイコンの絵を、そのまま、モデルに貼っています。形が絵と合わない約 80 個(風船・ペイントボールの銃など)は、模様つきの色のままです。</td></tr>
+  </table>
+  <table class="en">
+    <tr><th style="width:26%">Item</th><th>Details</th></tr>
+    <tr><td>Where the shader works</td><td>Only in games that allow shader packs. In games that do not (most standard games), relief, shadows, coloured light, water, falling leaves and snow still work, but <b>leaf/grass swaying and cut-out transparency of leaves do not</b> (a game-side limit).</td></tr>
+    <tr><td>Sky</td><td>Only when the game uses the standard image-based sky. Games with a procedural sky (for example day/night cycles) keep their own sky.</td></tr>
+    <tr><td>UI (gold trim etc.)</td><td>Built within the limits of how the game imports texture-pack CSS. A game update that renames classes may break parts of it. A little blue remains where it cannot be changed (for example button hover colours).</td></tr>
+    <tr><td>Face image</td><td>Replaces the face on the world-join loading screen (cut out as a circle) and in the logo. Other players' avatars are unchanged.</td></tr>
+    <tr><td>Lite versions</td><td>Slightly simpler looks. The speed difference depends on your setup.</td></tr>
+    <tr><td>Held items</td><td>The icon art is mapped onto the models. About 80 models whose shape does not match their icon (balloons, paintball guns and so on) keep the patterned flat colours instead.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="ja">よくある質問</span><span class="en">FAQ</span></h2>
+  <details><summary><span class="ja">読み込めない・重い</span><span class="en">It will not load / it is heavy</span></summary><p><span class="ja">テクスチャは、軽量版を試してください。シェーダーが動かないときは、WebGPU が使えるブラウザか確認してください(検証に通らないと、行番号つきのエラーが出ます)。</span><span class="en">Try the Lite textures. If the shader does not run, check that your browser supports WebGPU (a validation failure shows an error with a line number).</span></p></details>
+  <details><summary><span class="ja">元に戻したい</span><span class="en">How do I go back?</span></summary><p><span class="ja">テクスチャは、設定で標準(Default 2)に戻します。シェーダーは、Shader Pack の画面で外します。</span><span class="en">For textures, choose the default pack (Default 2) in the settings. For the shader, remove it on the Shader Pack screen.</span></p></details>
+  <details><summary><span class="ja">色や強さを変えたい</span><span class="en">Can I tweak colours and strength?</span></summary><p><span class="ja">シェーダーの <code>golden_hour.wgsl</code> の先頭に、調整用の値(立体感・光と色・質感・水など)があります。リポジトリのソースを、編集して、zip にして入れ直してください。</span><span class="en">The top of <code>golden_hour.wgsl</code> has tunable values (relief, light and colour, materials, water and so on). Edit the source from the repository, zip it and load it again.</span></p></details>
+  <details><summary><span class="ja">Bloxd の公式のものですか?</span><span class="en">Is this official?</span></summary><p><span class="ja">いいえ。<b>非公式のファンメイド</b>です。Bloxd.io とは関係ありません。下の注意を読んでください。</span><span class="en">No. It is <b>unofficial and fan-made</b>, and not affiliated with Bloxd.io. Please read the notice below.</span></p></details>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="ja"><b>注意:</b> Golden Hour は、Bloxd.io の非公式のファンメイドで、Bloxd.io の運営とは関係ありません。テクスチャ・モデルは、Bloxd.io の標準のテクスチャ・モデルを元に、加工したものです。権利は、それぞれの権利者に帰属します。権利者からの要請があれば、速やかに、取り下げます。使用は、自己責任でお願いします。</p>
+    <p class="en"><b>Notice:</b> Golden Hour is an unofficial fan-made project and is not affiliated with Bloxd.io. The textures and models are derived from the standard Bloxd.io textures and models; all rights remain with their respective owners. If a rights holder asks, it will be taken down promptly. Use at your own risk.</p>
+    <p><span class="ja">ソース・更新履歴:</span><span class="en">Source &amp; changelog:</span> <a href="https://github.com/Venus-builder/bloxd-golden-hour">github.com/Venus-builder/bloxd-golden-hour</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function setLang(l) {
+    root.setAttribute("data-lang", l);
+    root.setAttribute("lang", l);
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.set === l)); });
+    try { localStorage.setItem("gh-lang", l); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem("gh-lang"); } catch (e) {}
+  var initial = saved || ((navigator.language || "ja").toLowerCase().indexOf("ja") === 0 ? "ja" : "en");
+  setLang(initial);
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.set); }); });
+
+  // ダウンロード数: GitHub の Releases API(ログイン不要)から、各ファイルの回数と、合計を読む。取れないときは、表示しない。
+  var nf = new Intl.NumberFormat();
+  fetch("https://api.github.com/repos/Venus-builder/bloxd-golden-hour/releases?per_page=100", { headers: { Accept: "application/vnd.github+json" } })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (releases) {
+      var total = 0, per = {};
+      releases.forEach(function (rel) { (rel.assets || []).forEach(function (a) { total += a.download_count; per[a.name] = (per[a.name] || 0) + a.download_count; }); });
+      document.getElementById("totalNum").textContent = nf.format(total);
+      document.getElementById("total").hidden = false;
+      document.querySelectorAll(".cnt[data-asset]").forEach(function (el) { var n = per[el.dataset.asset]; el.textContent = n == null ? "–" : nf.format(n); });
+    })
+    .catch(function () { /* 取れなかったら、数字は、出さない */ });
+})();
+</script>
+</body>
+</html>
