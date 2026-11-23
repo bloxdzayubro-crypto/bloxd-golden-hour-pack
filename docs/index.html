@@ -116,7 +116,7 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
     <div class="card">
       <span class="tag"><span class="ja">シェーダー</span><span class="en">Shader</span></span>
       <h3>Golden Hour Shader</h3>
-      <p><span class="ja">本編。凹凸・影・光の色・水・落ち葉・雪・水の波紋・金属の質感など、全部入り。</span><span class="en">The full version: relief, shadows, coloured light, water, falling leaves, snow, water ripples, metal sheen — everything.</span></p>
+      <p><span class="ja">本編。凹凸・影・光の色・水・落ち葉・雪の結晶・水の波紋・金属の質感など、全部入り(重めです)。</span><span class="en">The full version: relief, shadows, coloured light, water, falling leaves, snowflakes, water ripples, metal sheen — everything.</span></p>
       <a class="btn" href="https://bloxd.io/shader-packs/km1Q641kLWxT">GoldenHour-Shader.zip</a>
       <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span></span>
     </div>
@@ -131,7 +131,7 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
     <div class="card">
       <span class="tag"><span class="ja">シェーダー・軽量版</span><span class="en">Shader · Lite</span></span>
       <h3>Golden Hour Shader Lite</h3>
-      <p><span class="ja">落ち葉・雪・波紋・凹凸・光の筋・雲の影などを切って、負荷を下げた版。色・光・影・水の見た目は残っています。</span><span class="en">Lighter on the GPU: falling leaves, snow, ripples, relief, light shafts and cloud shadows are switched off. Colours, light, shadows and water stay.</span></p>
+      <p><span class="ja">本当に軽い最小版。影の計算を 1 回も呼ばず、エンジンの標準の光に、色の仕上げ(日向は暖色・日陰は寒色)と、水の色・空の映り込みだけを足します。落ち葉・雪・波紋・凹凸・光の筋・雲の影は、ありません。</span><span class="en">A truly minimal build. It never calls the shadow functions: just the engine's standard light plus a colour grade (warm sun, cool shade) and water tint/sky reflection. No falling leaves, snow, ripples, relief, light shafts or cloud shadows.</span></p>
       <a class="btn" href="https://bloxd.io/shader-packs/M4EdLwbvw-fe">GoldenHour-Shader-Lite.zip</a>
       <span class="size"><span class="ja">約 15 KB</span><span class="en">~15 KB</span></span>
     </div>
@@ -204,19 +204,21 @@ code{background:#120d08;border:1px solid #3a2b1a;padding:1px 6px;border-radius:4
   <table class="ja">
     <tr><th style="width:26%">項目</th><th>内容</th></tr>
     <tr><td>シェーダーが効くゲーム</td><td>シェーダーパックを許可しているゲームだけ。許可していないゲーム(多くの標準ゲーム)では、凹凸・影・光の色・水・落ち葉・雪は効きますが、<b>葉と草の「ゆれ」と、葉の黒い部分の透明化は効きません</b>(ゲーム側の制限)。</td></tr>
+    <tr><td>雪</td><td>雪のブロック(わずかに青みのある白)を見ているときだけ、雪の結晶の形で降ります。白い羊毛・コンクリート・石英では降りません。パックの雪のテクスチャ(本パックに含む)か、元の雪のテクスチャが前提です。</td></tr>
     <tr><td>空</td><td>ゲームが標準の「画像の空」を使うときだけ。昼夜サイクルのあるゲームなど、プログラムで描く空を使うゲームでは、ゲーム自身の空のままです。</td></tr>
     <tr><td>UI(金の縁など)</td><td>ゲームがテクスチャパックの CSS を取り込む仕組みの中で作っています。ゲームの更新で名前が変わると、効かなくなる部分が出ます。ボタンにマウスを乗せたときの色など、変えられない青が少し残ります。</td></tr>
     <tr><td>顔の画像</td><td>ワールド参加時のロード画面の顔(円形に切り抜き)と、ロゴの顔を差し替えています。他のプレイヤーのアバターは、変えていません。</td></tr>
-    <tr><td>軽量版</td><td>見た目は少し簡素になります。速さの差は、環境によります。</td></tr>
+    <tr><td>軽量版</td><td>シェーダーの軽量版は、影がエンジンの標準のままになります(本編のような影の調整は、ありません)。テクスチャの軽量版は、見た目が少し簡素になります。速さの差は、環境によります。</td></tr>
     <tr><td>手に持つアイテム</td><td>アイコンの絵を、そのまま、モデルに貼っています。形が絵と合わない約 80 個(風船・ペイントボールの銃など)は、模様つきの色のままです。</td></tr>
   </table>
   <table class="en">
     <tr><th style="width:26%">Item</th><th>Details</th></tr>
     <tr><td>Where the shader works</td><td>Only in games that allow shader packs. In games that do not (most standard games), relief, shadows, coloured light, water, falling leaves and snow still work, but <b>leaf/grass swaying and cut-out transparency of leaves do not</b> (a game-side limit).</td></tr>
+    <tr><td>Snow</td><td>Snowflakes fall only while you look at snow blocks (white with a slight blue tint) — not white wool, concrete or quartz. It relies on the pack's snow texture (included) or the original snow texture.</td></tr>
     <tr><td>Sky</td><td>Only when the game uses the standard image-based sky. Games with a procedural sky (for example day/night cycles) keep their own sky.</td></tr>
     <tr><td>UI (gold trim etc.)</td><td>Built within the limits of how the game imports texture-pack CSS. A game update that renames classes may break parts of it. A little blue remains where it cannot be changed (for example button hover colours).</td></tr>
     <tr><td>Face image</td><td>Replaces the face on the world-join loading screen (cut out as a circle) and in the logo. Other players' avatars are unchanged.</td></tr>
-    <tr><td>Lite versions</td><td>Slightly simpler looks. The speed difference depends on your setup.</td></tr>
+    <tr><td>Lite versions</td><td>The Lite shader keeps the engine's standard shadows (no custom shadow tuning). The Lite textures look slightly simpler. The speed difference depends on your setup.</td></tr>
     <tr><td>Held items</td><td>The icon art is mapped onto the models. About 80 models whose shape does not match their icon (balloons, paintball guns and so on) keep the patterned flat colours instead.</td></tr>
   </table>
 </section>
